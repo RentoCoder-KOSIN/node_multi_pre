@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <div class="head">
+        <div class="leader-board">LeaderBoard</div>
+        <div id="playerLabels">
+        </div>
+    </div>
+    <canvas id="canvas"></canvas>
+
+    <div class="username-label" id="usernameContainer">
+        <form id="usernameForm">
+            <div>
+                <input id="usernameInput" type="text" placeholder="Username">
+            </div>
+            <div class="button-label">
+                <button id="submitButton">Start</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+    <script src="/classes/Player.js"></script>
+    <script src="/classes/Projectile.js"></script>
+    <script src="/frontend.js"></script>
+    <script src="/eventListeners.js"></script>
+    <script></script>
+</body>
+
+</html>
