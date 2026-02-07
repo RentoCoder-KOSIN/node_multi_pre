@@ -1,32 +1,24 @@
 addEventListener("click", (event) => {
-    const canvas = document.querySelector("canvas");
-    const { top, left} = canvas.getBoundingClientRect();
+    if (!frontEndPlayers[socket.id]) return;
+    // Get mouse position relative to the canvas in CSS pixels
+    const rect = canvas.getBoundingClientRect();
+    const mouseX = event.clientX - rect.left;
+    const mouseY = event.clientY - rect.top;
+
     const playerPosition = {
         x: frontEndPlayers[socket.id].x,
         y: frontEndPlayers[socket.id].y
-    }
+    };
 
     const angle = Math.atan2(
-        //(event.clientY * window.devicePixelRatio) - playerPosition.y,
-        //(event.clientX * window.devicePixelRatio) - playerPosition.x
-        (event.clientY - top - playerPosition.y),
-        (event.clientX - left - playerPosition.x)
+        mouseY - playerPosition.y,
+        mouseX - playerPosition.x
     );
-    // const velocity = {
-    //     x: Math.cos(angle) * 5,
-    //     y: Math.sin(angle) * 5
-    // }
 
+    // Send CSS-pixel coordinates (consistent with client drawing and server bounds)
     socket.emit("shoot", {
         x: playerPosition.x,
         y: playerPosition.y,
         angle
-    })
-    // frontEndProjectiles.push(new Projectile({
-    //     x: playerPosition.x,
-    //     y: playerPosition.y,
-    //     radius: 5,
-    //     color: "white",
-    //     velocity: velocity
-    // }));
+    });
 });
